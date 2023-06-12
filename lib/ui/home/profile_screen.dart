@@ -4,7 +4,6 @@ import 'package:default_project/ui/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-String donee = '';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
