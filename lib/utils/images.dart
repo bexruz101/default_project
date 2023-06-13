@@ -3,6 +3,15 @@ class AppImages{
   //png
   static final String man = 'assets/png/man.png';
   static final String man2 = 'assets/png/man2.png';
+  static final String belgia = 'assets/png/belgia.png';
+  static final String german = 'assets/png/german.png';
+  static final String indonesia = 'assets/png/indonesia.png';
+  static final String ireland = 'assets/png/ireland.png';
+  static final String italy = 'assets/png/italy.png';
+  static final String malaysia = 'assets/png/malaysia.png';
+  static final String newzeland = 'assets/png/newzeland.png';
+  static final String philippine = 'assets/png/philippine.png';
+  static final String usa = 'assets/png/usa.png';
 
 
   //svg
@@ -24,4 +33,5 @@ class AppImages{
   static final String bottom = 'assets/svg/bottom.svg';
   static final String done = 'assets/svg/done.svg';
   static final String ndone = 'assets/svg/ndone.svg';
+  static final String search = 'assets/svg/search.svg';
 }

@@ -1,4 +1,6 @@
+import 'package:default_project/ui/about/about_screen.dart';
 import 'package:default_project/ui/profile/profile_screen.dart';
+import 'package:default_project/ui/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utils/colors.dart';
@@ -18,7 +20,7 @@ class KrutoyRow extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context){
-          return num==1?ProfilScreen():AccountScreen();
+          return num==1?ProfilScreen():num==2?AccountScreen():num==3?SettingsScreen():AboutScreen();
         }));
       },
       child: Row(
