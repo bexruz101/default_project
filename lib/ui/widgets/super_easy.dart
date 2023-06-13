@@ -1,6 +1,7 @@
-import 'package:default_project/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../utils/colors.dart';
 
 class SuperEasy extends StatelessWidget {
   const SuperEasy({super.key, required this.text, required this.icon});

@@ -1,5 +1,6 @@
-import 'package:default_project/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/colors.dart';
 
 class Point extends StatelessWidget {
   const Point({super.key, required this.height1, required this.width1, });

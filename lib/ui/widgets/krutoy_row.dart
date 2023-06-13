@@ -1,24 +1,26 @@
-import 'package:default_project/ui/home/profile_screen.dart';
+import 'package:default_project/ui/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utils/colors.dart';
 import '../../utils/images.dart';
+import '../account/account_screen.dart';
 
 class KrutoyRow extends StatelessWidget {
-  const KrutoyRow({super.key, required this.icon, required this.text});
+  const KrutoyRow({super.key, required this.icon, required this.text, required this.num});
 
   final String icon;
   final String text;
+  final int num;
 
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: text=='Profile'?(){
+      onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context){
-          return ProfilScreen();
+          return num==1?ProfilScreen():AccountScreen();
         }));
-      }:(){},
+      },
       child: Row(
         children: [
           Container(

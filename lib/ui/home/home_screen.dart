@@ -1,10 +1,11 @@
-import 'package:default_project/ui/home/widgets/krutoy_row.dart';
-import 'package:default_project/ui/home/widgets/points.dart';
-import 'package:default_project/ui/home/widgets/super_easy.dart';
-import 'package:default_project/ui/utils/colors.dart';
-import 'package:default_project/ui/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:default_project/ui/widgets/points.dart';
+
+import '../../utils/colors.dart';
+import '../../utils/images.dart';
+import '../widgets/krutoy_row.dart';
+import '../widgets/super_easy.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -57,13 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 16,),
               Divider(thickness: 0.3,),
               SizedBox(height: 40,),
-              KrutoyRow(icon: AppImages.account, text: 'Profile',),
+              KrutoyRow(icon: AppImages.account, text: 'Profile', num: 1,),
               SizedBox(height: 25,),
-              KrutoyRow(icon: AppImages.security, text: 'Account',),
+              KrutoyRow(icon: AppImages.security, text: 'Account', num: 2,),
               SizedBox(height: 25,),
-              KrutoyRow(icon: AppImages.settings, text: 'Setting',),
+              KrutoyRow(icon: AppImages.settings, text: 'Setting', num: 3,),
               SizedBox(height: 25,),
-              KrutoyRow(icon: AppImages.help, text: 'About',),
+              KrutoyRow(icon: AppImages.help, text: 'About', num: 4,),
               SizedBox(height: 54,),
               Container(
                 height:85,
@@ -72,8 +73,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child:  Stack(
                   children: [Positioned(
                       child: Point(height1: 7, width1: 7),
-                    top: 20,
-                    left: 22,
+                      top: 20,
+                      left: 22,
                   ),
                   Positioned(
                       child: Point(height1: 4, width1: 4),

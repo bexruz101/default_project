@@ -1,8 +1,10 @@
-import 'package:default_project/ui/home/widgets/input_text.dart';
-import 'package:default_project/ui/utils/colors.dart';
-import 'package:default_project/ui/utils/images.dart';
+import 'package:default_project/ui/widgets/global_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../utils/colors.dart';
+import '../../utils/images.dart';
+import '../widgets/input_text.dart';
 
 
 class ProfilScreen extends StatefulWidget {
@@ -113,15 +115,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   SizedBox(width: 24,),
                   InputText(mainText: 'Address', hintText: '', type:TextInputType.streetAddress),
                   SizedBox(height: 24,),
-                  Ink(
-                    height: 56,
-                    width: 327,
-                    decoration: BoxDecoration(color: AppColors.c_52B6DF,borderRadius:BorderRadius.circular(10)),
-                    child: InkWell(
-                      child: Center(child: Text('Update Profil',style: TextStyle(color: AppColors.white,fontWeight: FontWeight.w600,fontSize: 17),)),
-                      onTap: (){},
-                    ),
-                  ),
+                  GlobalButton(),
                   SizedBox(height: 24,),
                 ],
 
