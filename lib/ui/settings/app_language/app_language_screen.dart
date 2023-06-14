@@ -1,6 +1,7 @@
 import 'package:default_project/ui/settings/widgets/choose_lang.dart';
 import 'package:default_project/utils/colors.dart';
 import 'package:default_project/utils/images.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,8 +14,8 @@ class AppLanguage extends StatefulWidget {
 
 class _AppLanguageState extends State<AppLanguage> {
 
-  String _icon1 = AppImages.done;
-  String _icon2 = AppImages.ndone;
+  String _icon1 = AppImages.ndone;
+  String _icon2 = AppImages.done;
   String _icon3 = AppImages.ndone;
   String _icon4 = AppImages.ndone;
   String _icon5 = AppImages.ndone;
@@ -47,7 +48,7 @@ class _AppLanguageState extends State<AppLanguage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Choose your language'),
+        title: Text(tr( "Choose_youth_language")),
         centerTitle: true,
       ),
       body: Center(
@@ -62,7 +63,7 @@ class _AppLanguageState extends State<AppLanguage> {
                       padding: EdgeInsets.symmetric(horizontal: 18,vertical: 12),
                       child: SvgPicture.asset(AppImages.search)
                   ),
-                  hintText: 'Search',
+                  hintText: tr("Search"),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: AppColors.c_F3F5F8),
@@ -79,6 +80,7 @@ class _AppLanguageState extends State<AppLanguage> {
               children: [
                 Container(
                   child: SelectLang(icon: AppImages.indonesia, icon2: _icon1, onTap: (){
+                      context.setLocale(Locale('ru','RU'));
                       _icon1 = AppImages.done;
                       _icon2 = AppImages.ndone;
                       _icon3 = AppImages.ndone;
@@ -89,12 +91,13 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon8 = AppImages.ndone;
                       _icon9 = AppImages.ndone;
                     setState(() {});
-                  }, text: 'Indonesia'),
+                  }, text: 'Russian'),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),
                 Container(
                   child: SelectLang(icon: AppImages.philippine, icon2: _icon2, onTap: (){
+                      context.setLocale(Locale('en','EN'));
                       _icon2 = AppImages.done;
                       _icon1 = AppImages.ndone;
                       _icon3 = AppImages.ndone;
@@ -105,12 +108,13 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon8 = AppImages.ndone;
                       _icon9 = AppImages.ndone;
                     setState(() {});
-                  }, text: 'Philippines'),
+                  }, text: 'English'),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),
                 Container(
                   child: SelectLang(icon: AppImages.italy, icon2: _icon3, onTap: (){
+                      context.setLocale(Locale('uz','UZ'));
                       _icon3 = AppImages.done;
                       _icon2 = AppImages.ndone;
                       _icon1 = AppImages.ndone;
@@ -121,7 +125,7 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon8 = AppImages.ndone;
                       _icon9 = AppImages.ndone;
                     setState(() {});
-                  }, text: 'Italy'),
+                  }, text: 'Uzbek'),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),
@@ -138,7 +142,7 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon8 = AppImages.ndone;
                       _icon9 = AppImages.ndone;
                     setState(() {});
-                  }, text: 'Ireland'),
+                  }, text: tr("Ireland")),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),
@@ -155,7 +159,7 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon8 = AppImages.ndone;
                       _icon9 = AppImages.ndone;
                     setState(() {});
-                  }, text: 'German'),
+                  }, text: tr( "German")),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),
@@ -190,7 +194,7 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon9 = AppImages.ndone;
 
                     setState(() {});
-                  }, text: 'America'),
+                  }, text: tr('America')),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),
@@ -208,7 +212,7 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon9 = AppImages.ndone;
 
                     setState(() {});
-                  }, text: 'Belgia'),
+                  }, text: tr('Belgia')),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),
@@ -225,7 +229,7 @@ class _AppLanguageState extends State<AppLanguage> {
                       _icon8 = AppImages.ndone;
                       _icon1 = AppImages.ndone;
                     setState(() {});
-                  }, text: 'New Zeland'),
+                  }, text: tr('New Zeland')),
                   margin: EdgeInsets.symmetric(horizontal: 24),
                 ),
                 SizedBox(height: 24,),

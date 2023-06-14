@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:default_project/ui/widgets/points.dart';
 
@@ -22,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [SvgPicture.asset(AppImages.logo),SizedBox(width: 10,),Text('Study',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),)],
+          children: [SvgPicture.asset(AppImages.logo),SizedBox(width: 10,),Text(tr('Study'),style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),)],
         ),
       ),
       body: Center(
@@ -40,12 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Welcome',style: TextStyle(color: AppColors.c_64748B,fontSize: 15,fontWeight: FontWeight.w400),),
+                      Text(tr('Welcome'),style: TextStyle(color: AppColors.c_64748B,fontSize: 15,fontWeight: FontWeight.w400),),
                       SizedBox(height: 4,),
-                      Text('Marvin McKinney',style: TextStyle(color: AppColors.c_0F172A,fontWeight: FontWeight.w600,fontSize: 17),),
+                      Text(tr("Marvin_McKinney"),style: TextStyle(color: AppColors.c_0F172A,fontWeight: FontWeight.w600,fontSize: 17),),
                     ],
                   ),
-                  SizedBox(width: 85,),
+                  SizedBox(width: 60,),
                   Container(
                     padding: EdgeInsets.all(12),
                     height: 40,
@@ -58,13 +60,13 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 16,),
               Divider(thickness: 0.3,),
               SizedBox(height: 40,),
-              KrutoyRow(icon: AppImages.account, text: 'Profile', num: 1,),
+              KrutoyRow(icon: AppImages.account, text: tr('Profile'), num: 1,),
               SizedBox(height: 25,),
-              KrutoyRow(icon: AppImages.security, text: 'Account', num: 2,),
+              KrutoyRow(icon: AppImages.security, text: tr('Account'), num: 2,),
               SizedBox(height: 25,),
-              KrutoyRow(icon: AppImages.settings, text: 'Setting', num: 3,),
+              KrutoyRow(icon: AppImages.settings, text: tr('Setting'), num: 3,),
               SizedBox(height: 25,),
-              KrutoyRow(icon: AppImages.help, text: 'About', num: 4,),
+              KrutoyRow(icon: AppImages.help, text: tr('About'), num: 4,),
               SizedBox(height: 54,),
               Container(
                 height:85,
@@ -127,8 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                       left: 255,bottom: 0.2,
                     ),
-                  Positioned(child: Text('How can we help you?',style: TextStyle(color: AppColors.white,fontWeight: FontWeight.w500,fontSize: 17),),
-                    top: 31,left: 140,
+                  Positioned(child: Text(tr('visual_btn_text'),style: TextStyle(color: AppColors.white,fontWeight: FontWeight.w500,fontSize: 15),),
+                    top: 31,left: 95,
                   ),
 
 
@@ -137,13 +139,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
               ),
               SizedBox(height: 63,),
-              Row(children: [
-                SuperEasy(text: 'Privacy Policy', icon: AppImages.left),
-                SizedBox(width: 44,),
-                SuperEasy(text: 'Terms', icon: AppImages.left),
-                SizedBox(width: 44,),
-                SuperEasy(text: 'English', icon: AppImages.bottom),
-              ],),
+              Expanded(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                  SuperEasy(text: tr("Privacy_Policy"), icon: AppImages.left),
+                  SizedBox(width: 44,),
+                  SuperEasy(text: tr("Terms"), icon: AppImages.left),
+                  SizedBox(width: 44,),
+                  SuperEasy(text: tr('English'), icon: AppImages.bottom),
+
+                ],),
+              ),
               Spacer(),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 27),

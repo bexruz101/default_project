@@ -12,6 +12,7 @@ class AppImages{
   static final String newzeland = 'assets/png/newzeland.png';
   static final String philippine = 'assets/png/philippine.png';
   static final String usa = 'assets/png/usa.png';
+  static final String ru1 = 'assets/png/rus1.png';
 
 
   //svg
@@ -34,4 +35,7 @@ class AppImages{
   static final String done = 'assets/svg/done.svg';
   static final String ndone = 'assets/svg/ndone.svg';
   static final String search = 'assets/svg/search.svg';
+  static final String eng = 'assets/svg/eng.svg';
+  static final String uz = 'assets/svg/uzb.svg';
+  static final String ru = 'assets/svg/rus.svg';
 }

@@ -1,4 +1,5 @@
 import 'package:default_project/ui/widgets/global_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,7 +24,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Profil',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17),),
+        title: Text(tr('Profil'),style: TextStyle(fontWeight: FontWeight.w500,fontSize: 17),),
       ),
       body: Center(
         child: Container(
@@ -52,13 +53,13 @@ class _ProfilScreenState extends State<ProfilScreen> {
               SizedBox(height: 20,),
               Expanded(child: ListView(
                 children: [
-                  InputText(mainText: 'Name', hintText: 'name', type: TextInputType.name),
+                  InputText(mainText: tr('Name'), hintText: tr('Name'), type: TextInputType.name),
                   SizedBox(height: 16,),
-                  InputText(mainText: 'Email', hintText: 'name', type: TextInputType.emailAddress),
+                  InputText(mainText: tr("Email"), hintText: tr("Email"), type: TextInputType.emailAddress),
                   SizedBox(height: 16,),
-                  InputText(mainText: 'Date of birth', hintText: 'name', type: TextInputType.text),
+                  InputText(mainText: tr("Date_of_birth"), hintText: tr("Date_of_birth"), type: TextInputType.text),
                   SizedBox(height: 16,),
-                  InputText(mainText: 'Phone Number', hintText: 'name', type: TextInputType.phone),
+                  InputText(mainText: tr("Phone_Number"), hintText: tr("Phone_Number"), type: TextInputType.phone),
                   SizedBox(height: 16,),
                   Text('Student ID',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15),),
                   SizedBox(height: 8,),
@@ -70,7 +71,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     child: Text('#87654',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: AppColors.c_64748B),),
                   ),
                   SizedBox(height: 16,),
-                  Text('Gender',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15),),
+                  Text(tr("Gender"),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15),),
                   Container(
                     child: Row(
                       children: [
@@ -83,7 +84,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               children: [
                                 SvgPicture.asset(AppImages.done),
                                 SizedBox(width: 10,),
-                                Text('Male',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),),
+                                Text(tr("Male"),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),),
 
                               ],
                             ),
@@ -101,7 +102,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                 children: [
                                   SvgPicture.asset(AppImages.ndone),
                                   SizedBox(width: 10,),
-                                  Text('Female',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),),
+                                  Text(tr('Female'),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),),
                                 ],
                               ),
                               height: 48,
@@ -113,7 +114,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     ),
                   ),
                   SizedBox(width: 24,),
-                  InputText(mainText: 'Address', hintText: '', type:TextInputType.streetAddress),
+                  InputText(mainText: tr("Address"), hintText: tr("1106_Sunrise_Road_Las_Vegas_NV_89102"), type:TextInputType.streetAddress),
                   SizedBox(height: 24,),
                   GlobalButton(),
                   SizedBox(height: 24,),

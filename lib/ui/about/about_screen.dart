@@ -1,4 +1,5 @@
 import 'package:default_project/ui/about/about_screen_next.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../settings/widgets/button.dart';
@@ -16,7 +17,7 @@ class _AboutScreenState extends State<AboutScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('About Us'),
+        title: Text(tr('About_Us?'),),
         centerTitle: true,
       ),
       body: Container(
@@ -30,13 +31,13 @@ class _AboutScreenState extends State<AboutScreen> {
                 return AboutScreenNext();
               }));
             },
-            child: Text('About Us',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),),
+            child: Text(tr('About_Us?'),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),),
             SizedBox(height: 36,),
-            Text('Help',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),
+            Text(tr('Help'),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),
             SizedBox(height: 36,),
-            Text('Term and Condition',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),
+            Text(tr('Term_and_Condition'),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),
             SizedBox(height: 36,),
-            Text('Data Protection',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),
+            Text(tr('Data_Protection'),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black)),
 
           ],
         ),

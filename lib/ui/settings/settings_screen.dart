@@ -1,4 +1,5 @@
 import 'package:default_project/ui/settings/widgets/button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Settings'),
+        title: Text(tr('Settings')),
         centerTitle: true,
       ),
       body: Container(
@@ -23,11 +24,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
               SizedBox(height: 36,),
-              Button(text: 'App language', a: 1),
+              Button(text: tr("Choose_youth_language"), a: 1),
               SizedBox(height: 36,),
-              Button(text: 'Notification', a: 2),
+              Button(text: tr("Notification"), a: 2),
               SizedBox(height: 36,),
-              Button(text: 'Update version', a: 2),
+              Button(text:tr("Update_version"), a: 2),
 
           ],
         ),

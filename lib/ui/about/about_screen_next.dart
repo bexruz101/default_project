@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AboutScreenNext extends StatefulWidget {
@@ -13,33 +14,21 @@ class _AboutScreenNextState extends State<AboutScreenNext> {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
+        margin: const EdgeInsets.symmetric(horizontal: 24),
+        child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('About Us?',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
+             Text(tr('About_Us?'),style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),),
             SizedBox(height: 24,),
-            Text('''Study is a  Lorem ipsum dolor sit amet,
-consectetur adipiscing elit. Morbi tellus 
-ut sagittis libero augue interdum. 
-           ''',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
+            Text(tr('Lorem'),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
             SizedBox(height: 48,),
-            Text('Lorem Ipsum',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
+            Text(tr('Ipsum'),style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
             SizedBox(height: 18,),
-            Text('''Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Morbi tellus ut sagittis 
-libero augue interdum.          
-            ''',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
+            Text(tr('about_text'),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
             SizedBox(height: 18,),
-            Text('''Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Morbi tellus ut sagittis 
-libero augue interdum.          
-            ''',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
+            Text(tr('about_text'),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
             SizedBox(height: 18,),
-            Text('''Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Morbi tellus ut sagittis 
-libero augue interdum.          
-            ''',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
+            Text(tr('about_text'),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13),),
             SizedBox(height: 18,),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/colors.dart';
@@ -18,7 +19,7 @@ class InputText extends StatelessWidget {
           Text(mainText,style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15),),
           SizedBox(height: 10,),
           TextField(
-            maxLines: mainText=='Address'?4:1,
+            maxLines: mainText==tr('Address')?4:1,
             style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),
            keyboardType: type,
             textInputAction: TextInputAction.done,
