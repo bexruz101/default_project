@@ -32,7 +32,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 SizedBox(height: 16,),
                 InputText(mainText: tr("Confirm_Password"), hintText: tr("Confirm_Password"), type: TextInputType.text),
                 SizedBox(height: 24,),
-                GlobalButton(),
+                GlobalButton(onTap: (){},),
             ],
 
           ),

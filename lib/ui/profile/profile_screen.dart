@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:default_project/ui/widgets/global_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -116,7 +118,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   SizedBox(width: 24,),
                   InputText(mainText: tr("Address"), hintText: tr("1106_Sunrise_Road_Las_Vegas_NV_89102"), type:TextInputType.streetAddress),
                   SizedBox(height: 24,),
-                  GlobalButton(),
+                  GlobalButton(onTap: (){},),
                   SizedBox(height: 24,),
                 ],
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:default_project/ui/widgets/points.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/images.dart';
@@ -17,6 +18,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  late SharedPreferences preferences;
+
+  Future<void> _init()async{
+    preferences =await  SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
