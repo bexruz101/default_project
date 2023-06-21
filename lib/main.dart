@@ -1,3 +1,4 @@
+import 'package:default_project/ui/app_routes.dart';
 import 'package:default_project/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       home: HomeScreen(),
+      initialRoute: RouteNames.inital,
+      onGenerateRoute: AppRoutes.generate,
     );
   }
 }
