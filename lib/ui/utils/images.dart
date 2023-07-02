@@ -1,13 +1,11 @@
 class AppImages{
 
   //png
-  static final String p1 = 'assets/png/p1.png';
+  static const String airpods = 'assets/png/airpods.png';
+  static const String iphone = 'assets/png/iphone.png';
+  static const String keyboard_mouse = 'assets/png/keyboard_mouse.png';
+  static const String mac = 'assets/png/mac.png';
+  static const String pc = 'assets/png/pc.png';
+  static const String speaker = 'assets/png/speaker.png';
 
-
-  //jpg
-  static final String p2 = 'assets/png/p2.jpg';
-
-
-  //svg
-  static final String lupa = 'assets/svg/lupa.svg';
 }
