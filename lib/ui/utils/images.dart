@@ -9,5 +9,7 @@ class AppImages{
 
 
   //svg
-  static final String lupa = 'assets/svg/lupa.svg';
+  static final String box = 'assets/svg/box.svg';
+  static final String phone = 'assets/svg/phone.svg';
+  static final String message = 'assets/svg/message.svg';
 }
