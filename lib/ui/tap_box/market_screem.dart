@@ -11,10 +11,27 @@ class MarketScreen extends StatefulWidget {
 
 class _MarketScreenState extends State<MarketScreen> {
 
-  List<String> proudctsName = StorageRepository.getList('productsName');
-  List<String> proudctsPrice =  StorageRepository.getList('proudctsPrice');
-  List<String> proudctsPicture = StorageRepository.getList('proudctsPhoto');
+  int count = 0;
+  late int k;
 
+  _count()async{
+     count = await StorageRepository.getInt('count');
+  }
+
+
+
+
+  List<String> proudctsName = StorageRepository.getList('productsName');
+  List<String> proudctsPrice =  StorageRepository.getList('productsPrice');
+  List<String> proudctsPicture = StorageRepository.getList('productsPhoto');
+  List<String> proudctsCount = StorageRepository.getList('proudctsCount');
+
+
+  @override
+  void initState() {
+    _count();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +40,23 @@ class _MarketScreenState extends State<MarketScreen> {
         title: Text('Market'),
         elevation: 0,
       ),
-      body:StorageRepository.getList('products')!=''?SizedBox(
+      body:proudctsName.isNotEmpty?SizedBox(
         width: double.infinity,
         child: ListView(
-          children: List.generate(StorageRepository.getList('products').length,(index) => Slidable(
+          children: List.generate(proudctsName.length,(index) => Slidable(
     endActionPane:ActionPane(
     motion: DrawerMotion(),
     children: [
     SlidableAction(onPressed: (v){
     setState(() {});
-    StorageRepository.deleteString('photo${StorageRepository.getInt('marketInd')}');
-    StorageRepository.deleteString('name${StorageRepository.getInt('marketInd')}');
-    StorageRepository.deleteString('price${StorageRepository.getInt('marketInd')}');
+    proudctsName.remove(proudctsName[index]);
+    proudctsPrice.remove(proudctsPrice[index]);
+    proudctsPicture.remove(proudctsPicture[index]);
+    proudctsCount.remove(proudctsCount[index]);
+    StorageRepository.putList('productsName',proudctsName);
+    StorageRepository.putList('productsPrice',proudctsPrice);
+    StorageRepository.putList('productsPhoto',proudctsPicture);
+    StorageRepository.putList('proudctsCount',proudctsCount);
     },
     backgroundColor: Colors.redAccent,
     icon: Icons.delete,
@@ -61,6 +83,24 @@ class _MarketScreenState extends State<MarketScreen> {
     Text(proudctsPrice[index],style: TextStyle(color: Colors.yellowAccent),),
     ],
     ),
+    SizedBox(width: 10,),
+    Row(children: [
+      Text('count: ${proudctsCount[index]}'),
+      IconButton(onPressed: (){
+        k = int.parse(proudctsCount[index]);
+        k++;
+        setState(() {
+        });
+        proudctsCount[index] = k.toString();
+      }, icon: Icon(Icons.add)),
+      IconButton(onPressed: (){
+        k = int.parse(proudctsCount[index]);
+        k--;
+        setState(() {
+        });
+        proudctsCount[index] = k.toString();
+      }, icon: Icon(Icons.minimize)),ft
+    ],),
     Spacer(),
     Icon(Icons.shopping_cart,color: Colors.white,),
     SizedBox(width: 20,),

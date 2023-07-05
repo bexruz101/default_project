@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool isLike = false;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
