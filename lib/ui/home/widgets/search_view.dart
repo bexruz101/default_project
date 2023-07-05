@@ -64,7 +64,7 @@ class ContactSearchView extends SearchDelegate {
             ),
             onTap: () {
               query = suggestions[index];
-              // close(context, query);
+               close(context, query);
             },
           ),
         ),

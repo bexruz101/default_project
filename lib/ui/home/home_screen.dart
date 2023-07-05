@@ -45,14 +45,19 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-     selectedMenu != 1 ? _getContactsByAlp(selectedMenu == 2 ? "ASC" : selectedMenu == 3 ? "DESC":''): _updateContacts();
+    selectedMenu != 1
+        ? _getContactsByAlp(selectedMenu == 2
+            ? "ASC"
+            : selectedMenu == 3
+                ? "DESC"
+                : '')
+        : _updateContacts();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context){
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
             return AddScreen();
           }));
         },
@@ -62,23 +67,41 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         title: Text('Contacts'),
         actions: [
-          IconButton(onPressed: ()async{
-            searchText = await showSearch(context: context, delegate: ContactSearchView(suggestionList:allContacts.map((e) => e.name).toList(),
-            )
-            );
-          }, icon: Icon(Icons.search),),
-          SizedBox(width: 20,),
+          IconButton(
+            onPressed: () async {
+              searchText = await showSearch(
+                  context: context,
+                  delegate: ContactSearchView(
+                    suggestionList: allContacts.map((e) => e.name).toList(),
+                  ));
+              if (searchText.isNotEmpty) {
+                _getContactsByQuery(searchText);
+              } else {
+                _updateContacts();
+              }
+            },
+            icon: Icon(Icons.search),
+          ),
+          SizedBox(
+            width: 20,
+          ),
           PopupMenuButton<int>(
               icon: const Icon(Icons.more_vert),
-              onSelected: (int item){
+              onSelected: (int item) {
                 setState(() {
                   selectedMenu = item;
                 });
-
+                selectedMenu != 1
+                    ? _getContactsByAlp(selectedMenu == 2
+                        ? "ASC"
+                        : selectedMenu == 3
+                            ? "DESC"
+                            : '')
+                    : _updateContacts();
               },
               position: PopupMenuPosition.values.last,
-              itemBuilder: (BuildContext context){
-                return  <PopupMenuEntry<int>>[
+              itemBuilder: (BuildContext context) {
+                return <PopupMenuEntry<int>>[
                   const PopupMenuItem<int>(
                     value: 1,
                     child: Text('Default'),
@@ -97,53 +120,101 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SizedBox(
         width: double.infinity,
-        child:contacts.isEmpty?Column(
-          children: [
-            SizedBox(height: 300,),
-            SvgPicture.asset(AppImages.box),
-            const SizedBox(height: 10,),
-            Text('You have no contacts yet',style: TextStyle(color: Colors.black.withOpacity(0.4),fontSize: 17),),
-          ],
-        ):ListView(
-          children: List.generate(contacts.length, (index) => Container(
-            margin: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-            child:GestureDetector(
-              onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return AccountScreen(name: contacts[index].name, surname: contacts[index].surname, phone: contacts[index].phone, id: contacts[index].id ?? 0, aaa: contacts[index],);
-                    }));
-              },
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: [
-                    SizedBox(height: 20,),
-                    Icon(Icons.account_circle,size: 50,),
-                    SizedBox(width: 10,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(contacts[index].name,style: TextStyle(fontSize: 17),),
-                            SizedBox(width: 4,),
-                            Text(contacts[index].surname,style: TextStyle(fontSize: 17),),
-                          ],
-                        ),
-                        SizedBox(height: 3,),
-                        Text(contacts[index].phone,style: TextStyle(fontSize: 17),),
-                      ],
-                    ),
-                    SizedBox(width: 30,),
-                    Spacer(),
-                    Icon(Icons.phone,color: Colors.green,size: 35,),
-                    SizedBox(height: 20,)
-                  ],
-                ),
-              ),
-            ),
-          ))
-        ),
+        child: contacts.isEmpty
+            ? Column(
+                children: [
+                  SizedBox(
+                    height: 300,
+                  ),
+                  SvgPicture.asset(AppImages.box),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'You have no contacts yet',
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(0.4), fontSize: 17),
+                  ),
+                ],
+              )
+            : ListView(
+                children: List.generate(
+                    contacts.length,
+                    (index) => Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 20),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return AccountScreen(
+                                  name: contacts[index].name,
+                                  surname: contacts[index].surname,
+                                  phone: contacts[index].phone,
+                                  id: contacts[index].id ?? 0,
+                                  aaa: contacts[index],
+                                );
+                              }));
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Icon(
+                                    Icons.account_circle,
+                                    size: 50,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            contacts[index].name,
+                                            style: TextStyle(fontSize: 17),
+                                          ),
+                                          SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            contacts[index].surname,
+                                            style: TextStyle(fontSize: 17),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 3,
+                                      ),
+                                      Text(
+                                        contacts[index].phone,
+                                        style: TextStyle(fontSize: 17),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Spacer(),
+                                  Icon(
+                                    Icons.phone,
+                                    color: Colors.green,
+                                    size: 35,
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ))),
       ),
     );
   }
