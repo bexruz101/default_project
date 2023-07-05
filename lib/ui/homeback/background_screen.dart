@@ -1,15 +1,14 @@
 import 'package:default_project/local/shared_repository.dart';
+import 'package:default_project/model/app_model.dart';
 import 'package:default_project/ui/tap_box/market_screem.dart';
 import 'package:flutter/material.dart';
 
 class BacckgroundScreen extends StatefulWidget {
-  const BacckgroundScreen({super.key, required this.name, required this.photo, required this.descript, required this.indexx, required this.price});
+  const BacckgroundScreen({super.key, required this.indexx, required this.modell});
 
-  final String name;
-  final String photo;
-  final String descript;
+  final AppModel modell;
   final int indexx;
-  final String price;
+
 
 
   @override
@@ -17,6 +16,10 @@ class BacckgroundScreen extends StatefulWidget {
 }
 
 class _BacckgroundScreenState extends State<BacckgroundScreen> {
+
+  List<String> proudctsName = [];
+  List<String> proudctsPrice = [];
+  List<String> proudctsPicture = [];
 
 
 
@@ -26,17 +29,18 @@ class _BacckgroundScreenState extends State<BacckgroundScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title:Text(widget.name),
+        title:Text(widget.modell.name),
         actions: [
           SizedBox(width: 10,),
           IconButton(icon:Icon(Icons.save),onPressed: (){
             setState(() {});
-            StorageRepository.putString('name${widget.indexx}', widget.name);
-            StorageRepository.putString('photo${widget.indexx}', widget.photo);
-            StorageRepository.putString('descript${widget.indexx}', widget.descript);
-            StorageRepository.putString('price${widget.indexx}', widget.price);
-            StorageRepository.putInt('marketInd', widget.indexx);
-            print(StorageRepository.getString('photo${widget.indexx}'));
+            proudctsName.add(widget.modell.name);
+            proudctsPrice.add(widget.modell.secondPrice);
+            proudctsPicture.add(widget.modell.photo);
+            StorageRepository.putList('productsName',proudctsName);
+            StorageRepository.putList('productsPrice',proudctsPrice);
+            StorageRepository.putList('productsPhoto',proudctsPicture);
+            print(StorageRepository.getList('productsName'));
           },),
         ],
       ),
@@ -50,18 +54,17 @@ class _BacckgroundScreenState extends State<BacckgroundScreen> {
               SizedBox(
                 height: 400,
                   width: 400,
-                  child: Image.asset(widget.photo)),
+                  child: Image.asset(widget.modell.photo)),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 40,),
                   Text('Nomi',style: TextStyle(color: Colors.blueAccent),),
-                  Text(widget.name),
+                  Text(widget.modell.name),
                   Text('Ba\'tafsil',style: TextStyle(color: Colors.blueAccent),),
-                  Text(widget.descript),
+                  Text(widget.modell.description),
                 ],
               )
-
             ],
           ),
         ),

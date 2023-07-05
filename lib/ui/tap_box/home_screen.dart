@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                       else{
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return BacckgroundScreen(name: MyRepository.data[index].name, photo: MyRepository.data[index].photo, descript: MyRepository.data[index].description, indexx: index, price: MyRepository.data[index].secondPrice,);
+                          return BacckgroundScreen(indexx: index, modell: MyRepository.data[index],);
                         }));
                       }
                     },

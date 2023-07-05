@@ -20,7 +20,7 @@ class StorageRepository {
   }
 
   static Future<bool>? putString(String key, String value) {
-    debugPrint('writing $value');
+    //debugPrint('writing $value');
     if (_preferences == null) return null;
     return _preferences!.setString(key, value);
   }
@@ -37,7 +37,7 @@ class StorageRepository {
   }
 
   static Future<bool>? deleteString(String key) {
-    debugPrint("Deleting...");
+    //debugPrint("Deleting...");
     if (_preferences == null) return null;
     return _preferences!.remove(key);
   }
