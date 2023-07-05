@@ -77,9 +77,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   IconButton(onPressed: () {
-                    widget.id > 0
-                        ? LocalDatabase.deleteContact(widget.id)
-                        : null;
+                        LocalDatabase.deleteContact(widget.aaa.id!);
                     Navigator.pop(context);
                   }, icon: Icon(Icons.delete)),
                   IconButton(onPressed: () {

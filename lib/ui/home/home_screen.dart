@@ -1,5 +1,6 @@
 import 'package:default_project/ui/account/acoount_screen.dart';
 import 'package:default_project/ui/add_contact/add_contact_screen.dart';
+import 'package:default_project/ui/home/widgets/search_view.dart';
 import 'package:default_project/ui/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,9 +17,25 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<ContactModelSql> contacts = [];
+  List<ContactModelSql> allContacts = [];
+
+  String searchText = '';
+
+  int selectedMenu = 1;
+
+  _getContactsByAlp(String order) async {
+    contacts = await LocalDatabase.getContactsByAlphabet(order);
+    setState(() {});
+  }
+
+  _getContactsByQuery(String query) async {
+    contacts = await LocalDatabase.getContactsByQuery(query);
+    setState(() {});
+  }
 
   _updateContacts() async {
     contacts = await LocalDatabase.getAllContacts();
+    allContacts = await LocalDatabase.getAllContacts();
     setState(() {});
   }
 
@@ -31,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _updateContacts();
+     selectedMenu != 1 ? _getContactsByAlp(selectedMenu == 2 ? "ASC" : selectedMenu == 3 ? "DESC":''): _updateContacts();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -45,9 +62,37 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         title: Text('Contacts'),
         actions: [
-          Icon(Icons.search),
+          IconButton(onPressed: ()async{
+            searchText = await showSearch(context: context, delegate: ContactSearchView(suggestionList:allContacts.map((e) => e.name).toList(),
+            )
+            );
+          }, icon: Icon(Icons.search),),
           SizedBox(width: 20,),
-          Icon(Icons.more_vert),
+          PopupMenuButton<int>(
+              icon: const Icon(Icons.more_vert),
+              onSelected: (int item){
+                setState(() {
+                  selectedMenu = item;
+                });
+
+              },
+              position: PopupMenuPosition.values.last,
+              itemBuilder: (BuildContext context){
+                return  <PopupMenuEntry<int>>[
+                  const PopupMenuItem<int>(
+                    value: 1,
+                    child: Text('Default'),
+                  ),
+                  const PopupMenuItem<int>(
+                    value: 2,
+                    child: Text('Sort by A-Z'),
+                  ),
+                  const PopupMenuItem<int>(
+                    value: 3,
+                    child: Text('Sort by Z-A'),
+                  ),
+                ];
+              })
         ],
       ),
       body: SizedBox(

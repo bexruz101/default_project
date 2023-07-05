@@ -26,9 +26,9 @@ class _AddScreenState extends State<AddScreen> {
     super.initState();
   }
 
-  TextEditingController _controllerName = TextEditingController();
-  TextEditingController _controllerSurname = TextEditingController();
-  TextEditingController _controllerPhone = TextEditingController();
+  final TextEditingController _controllerName = TextEditingController();
+  final TextEditingController _controllerSurname = TextEditingController();
+  final TextEditingController _controllerPhone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +54,16 @@ class _AddScreenState extends State<AddScreen> {
               child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Name'),
-              SizedBox(height: 10,),
+              const Text('Name'),
+              const SizedBox(height: 10,),
               TextField(
                 controller: _controllerName,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.black,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color:AppColors.C_9E9E9E)
                     ),
@@ -87,16 +87,16 @@ class _AddScreenState extends State<AddScreen> {
               child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Surname'),
-                  SizedBox(height: 10,),
+                  const Text('Surname'),
+                  const SizedBox(height: 10,),
                   TextField(
                     controller: _controllerSurname,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: AppColors.black,
                     ),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color:AppColors.C_9E9E9E)
                         ),
@@ -121,23 +121,30 @@ class _AddScreenState extends State<AddScreen> {
               child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Phone number'),
-                  SizedBox(height: 10,),
+                  const Text('Phone number'),
+                  const SizedBox(height: 10,),
                   TextField(
+                    keyboardType: TextInputType.phone,
                     controller: _controllerPhone,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: AppColors.black,
                     ),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
+                        prefixText: '+998 ',
+                        prefixStyle:TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.black,
+                    ),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color:AppColors.C_9E9E9E)
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color:AppColors.C_9E9E9E)
                         ),
-                        hintText: '+998 __ ___ __ __',
+                        hintText: '__ ___ __ __',
                         hintStyle:TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
