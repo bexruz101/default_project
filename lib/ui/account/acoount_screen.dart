@@ -1,24 +1,27 @@
 import 'package:default_project/data/db/local_database.dart';
 import 'package:default_project/ui/utils/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/contact_model.dart';
 
 class AccountScreen extends StatefulWidget {
-  const AccountScreen({super.key, required this.name, required this.surname, required this.phone, required this.id, required this.aaa});
+  const AccountScreen(
+      {super.key, required this.aaa, required this.deleteListener});
 
-  final String name;
-  final int id;
-  final String surname;
-  final String phone;
   final ContactModelSql aaa;
+  final VoidCallback deleteListener;
 
   @override
   State<AccountScreen> createState() => _AccountScreenState();
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+
+
+
   List<ContactModelSql> contacts = [];
 
   _updateContacts() async {
@@ -28,6 +31,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   void initState() {
+
     _updateContacts();
     super.initState();
   }
@@ -41,7 +45,9 @@ class _AccountScreenState extends State<AccountScreen> {
         title: Text('Contacts'),
         actions: [
           Icon(Icons.search),
-          SizedBox(width: 20,),
+          SizedBox(
+            width: 20,
+          ),
           Icon(Icons.more_vert),
         ],
       ),
@@ -51,39 +57,68 @@ class _AccountScreenState extends State<AccountScreen> {
           margin: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              SizedBox(height: 200,),
-              Icon(Icons.account_circle, size: 100,),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 200,
+              ),
+              Icon(
+                Icons.account_circle,
+                size: 100,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(widget.name),
-                  SizedBox(width: 5,),
-                  Text(widget.surname),
+                  Text(widget.aaa.name),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(widget.aaa.surname),
                 ],
               ),
-              SizedBox(height: 30,),
+              SizedBox(
+                height: 30,
+              ),
               Row(
                 children: [
-                  Text(widget.phone),
+                  Text(widget.aaa.phone),
                   Spacer(),
-                  SvgPicture.asset(AppImages.phone),
-                  SizedBox(width: 4,),
-                  SvgPicture.asset(AppImages.message),
-                  SizedBox(width: 5,),
-                ],),
+                  IconButton(onPressed: ()async{
+                    await FlutterPhoneDirectCaller.callNumber(widget.aaa.phone);
+                  }, icon: SvgPicture.asset(AppImages.phone),),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  IconButton(onPressed: ()async{
+                    await launchUrl(Uri.parse('sms:${widget.aaa.phone}'));
+                  }, icon: SvgPicture.asset(AppImages.message),),
+                  SizedBox(
+                    width: 5,
+                  ),
+                ],
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(onPressed: () {
-                        LocalDatabase.deleteContact(widget.aaa.id!);
-                    Navigator.pop(context);
-                  }, icon: Icon(Icons.delete)),
-                  IconButton(onPressed: () {
-                    _updateContacts();
-                    _updateSingleContact(widget.aaa);
-                  }, icon: Icon(Icons.edit)),
+                  IconButton(
+                      onPressed: () async{
+                        int deletedId = await LocalDatabase.deleteContact(widget.aaa.id!);
+                        if(deletedId > 0){
+                          widget.deleteListener.call();
+                          if(context.mounted){
+                            Navigator.pop(context);
+                          }
+                        }
+                      },
+                      icon: Icon(Icons.delete)),
+                  IconButton(
+                      onPressed: (){
+                            _updateSingleContact(widget.aaa);
+                            _updateContacts();
+                      },
+                      icon: Icon(Icons.edit)),
                 ],
               )
             ],
@@ -95,11 +130,11 @@ class _AccountScreenState extends State<AccountScreen> {
 
   _updateSingleContact(ContactModelSql contactModelSql) {
     final TextEditingController nameController =
-    TextEditingController(text: contactModelSql.name);
+        TextEditingController(text: contactModelSql.name);
     final TextEditingController surnameController =
-    TextEditingController(text: contactModelSql.surname);
+        TextEditingController(text: contactModelSql.surname);
     final TextEditingController phoneController =
-    TextEditingController(text: contactModelSql.phone);
+        TextEditingController(text: contactModelSql.phone);
 
     showDialog(
         context: context,
@@ -124,13 +159,10 @@ class _AccountScreenState extends State<AccountScreen> {
                     controller: phoneController,
                     decoration: const InputDecoration(hintText: "Phone"),
                   ),
-
                   const SizedBox(height: 30),
                   TextButton(
-                      onPressed: () async {
-                        setState(() {});
-                        _updateContacts();
-                        await LocalDatabase.updateContact(
+                      onPressed: ()async {
+                         await LocalDatabase.updateContact(
                           contactsModelSql: contactModelSql.copyWith(
                             surname: surnameController.text,
                             name: nameController.text,
@@ -138,9 +170,11 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         );
                         _updateContacts();
-                        Navigator.pop(context);
+                        if(context.mounted){
+                          Navigator.pop(context);
+                        }
                       },
-                      child: Text("Update"))
+                      child:const Text("Update"))
                 ],
               ),
             ),

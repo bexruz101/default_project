@@ -1,4 +1,5 @@
 import 'package:default_project/ui/home/home_screen.dart';
+import 'package:default_project/ui/update_contact/app_route.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      home: HomeScreen(),
+      initialRoute: RouteNames.contacts,
+      onGenerateRoute: AppRoutes.generateRoute,
     );
   }
 }

@@ -43,7 +43,6 @@ class ContactSearchView extends SearchDelegate {
       final result = searchResult.toLowerCase();
       final input = query.toLowerCase();
       return result.contains(input);
-      //["Olmazor","Samarqand","Moscow"]
     }).toList();
     return Padding(
       padding: const EdgeInsets.all(20),

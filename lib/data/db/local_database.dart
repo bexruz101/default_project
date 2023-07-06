@@ -82,15 +82,26 @@ class LocalDatabase {
       where: "${ContactModelFields.id} = ?",
       whereArgs: [contactsModelSql.id],
     );
+
+
   }
 
-  static deleteContact(int id) async {
+  static Future<int> deleteContact(int? id) async {
     final db = await getInstance.database;
-    db.delete(
+    int count =  await db.delete(
       ContactModelFields.contactsTable,
       where: "${ContactModelFields.id} = ?",
       whereArgs: [id],
     );
+
+    return count;
+  }
+  static deleteAllContact(int? id) async {
+    final db = await getInstance.database;
+    await db.delete(
+      ContactModelFields.contactsTable,
+    );
+
   }
 
   static Future<List<ContactModelSql>> getContactsByLimit(int limit) async {
