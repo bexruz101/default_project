@@ -22,7 +22,6 @@ class _BacckgroundScreenState extends State<BacckgroundScreen> {
   List<String> proudctsPicture = [];
   List<String> proudctsCount = [];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
