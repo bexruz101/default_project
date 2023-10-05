@@ -1,8 +1,11 @@
+import 'package:default_project/domain/bloc/user_bloc.dart';
 import 'package:default_project/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -12,11 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: false,
-      ),
-      home: HomeScreen(),
+      home: Provider(
+        create: (_)=>UserCubit(),
+        child: const HomeScreen(),
+        dispose: (context,value)=>value.close(),
+        )
     );
   }
 }
